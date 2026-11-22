@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wukong-collect"
+version = "0.1.0"
+description = "Research comment collection for Steam, Reddit and YouTube"
+requires-python = ">=3.11"
+dependencies = ["requests[socks]>=2.32,<3", "python-dotenv>=1.0,<2"]
+
+[project.optional-dependencies]
+reddit = ["google-cloud-bigquery>=3.25,<4"]
+dev = ["pytest>=8,<10"]
+
+[project.scripts]
+wukong-collect = "wukong_collect.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

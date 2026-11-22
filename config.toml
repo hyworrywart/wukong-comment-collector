@@ -1,0 +1,54 @@
+[collection]
+# UTC, start inclusive and end exclusive. Default: Beijing 2024-08-20 through 2026-11-08.
+start = "2024-08-19T16:00:00Z"
+end = "2026-11-08T16:00:00Z"
+database = "data/comments.sqlite3"
+hash_key_file = "data/.author_hmac.key"
+
+[network]
+timeout = 30
+min_interval = 1.2
+retries = 4
+max_retry_wait = 60
+user_agent = "WukongAcademicCollector/0.1 (public-content research)"
+
+[steam]
+app_id = 2358720
+# 'all' keeps the multilingual baseline. Use API codes e.g. english/russian.
+languages = ["all"]
+page_size = 100
+max_pages = 10
+review_type = "all"
+purchase_type = "all"
+# 0 includes off-topic activity; retain the flags for sensitivity analysis.
+filter_offtopic_activity = 0
+
+[youtube]
+# Use IDs or standard watch/youtu.be URLs. Discovery adds candidates to SQLite.
+video_ids = []
+queries = ["Black Myth Wukong review", "Black Myth Wukong Journey to the West", "Black Myth Wukong Chinese culture"]
+search_pages = 1
+include_replies = true
+max_pages = 10
+max_requests = 200
+
+[reddit]
+# Default to the public Arctic Shift archive. BigQuery and local import are optional.
+mode = "arctic_shift"
+source = "arctic_shift"
+archive_all_comments_subreddits = ["BlackMythWukong"]
+# Search older parent posts too: new replies can belong to older threads.
+archive_posts_start = "2005-01-01T00:00:00Z"
+import_files = []
+subreddits = ["BlackMythWukong"]
+keywords = ["Black Myth", "Wukong", "黑神话"]
+project = ""
+comments_table = ""
+posts_table = ""
+kinds = ["comment"]
+timestamp_format = "timestamp"
+maximum_bytes_billed = 1000000000
+page_size = 500
+max_pages = 10
+# Needed only for import/BigQuery; archive mode supplies its own field mappings.
+[reddit.fields]
